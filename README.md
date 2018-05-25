@@ -3,7 +3,7 @@
 This is a python interface for the Raspberry Pi+ LoRa(TM) Expansion Board by Uputronics (https://store.uputronics.com/index.php?route=product/product&path=61&product_id=68).
 This board uses the Hope RF’s patented LoRaTM modulation technique RFM95/96/97/98(W) 
 
-The code is derived and adapted from: https://github.com/mayeranalytics/pySX127x with the help of the indications in: https://electron-tinker.blogspot.com.es/2016/08/raspberry-pi-lora-hoperf-python-code.html
+The code is derived and adapted from: https://github.com/mayeranalytics/pyhoperf with the help of the indications in: https://electron-tinker.blogspot.com.es/2016/08/raspberry-pi-lora-hoperf-python-code.html
 
 
 # Motivation
@@ -17,8 +17,8 @@ running on a Raspberry Pi is becoming a viable alternative for rapid prototyping
 ### Overview
 First import the modules 
 ```python
-from SX127x.LoRa import *
-from SX127x.board_config import BOARD
+from hoperf.LoRa import *
+from hoperf.board_config import BOARD
 ```
 then set up the board GPIOs
 ```python
@@ -31,7 +31,7 @@ lora.set_mode(MODE.STDBY)
 ```
 Registers are queried like so:
 ```python
-print lora.version()        # this prints the sx127x chip version
+print lora.version()        # this prints the hoperf chip version
 print lora.get_freq()       # this prints the frequency setting 
 ```
 and setting registers is easy, too
@@ -58,7 +58,7 @@ BOARD.teardown()
 ```
 
 ### More details
-Most functions of `SX127x.Lora` are setter and getter functions. For example, the setter and getter for 
+Most functions of `hoperf.Lora` are setter and getter functions. For example, the setter and getter for 
 the coding rate are demonstrated here
 ```python 
 print lora.get_coding_rate()                # print the current coding rate
@@ -71,7 +71,7 @@ lora.set_coding_rate(CODING_RATE.CR4_6)     # set it to CR4_6
 # Installation
 
 Make sure SPI is activated on you RaspberryPi: [SPI](https://www.raspberrypi.org/documentation/hardware/raspberrypi/spi/README.md)
-**pySX127x** requires these two python packages:
+**pyhoperf** requires these two python packages:
 * [RPi.GPIO](https://pypi.python.org/pypi/RPi.GPIO") for accessing the GPIOs, it should be already installed on
   a standard Raspian Linux image
 * [spidev](https://pypi.python.org/pypi/spidev) for controlling SPI
@@ -89,7 +89,7 @@ At this point you may want to confirm that the unit tests pass. See the section 
 You can now run the scripts. For example dump the registers with `lora_util.py`: 
 ```bash
 rasp$ sudo ./lora_util.py
-SX127x LoRa registers:
+hoperf LoRa registers:
  mode               SLEEP
  freq               434.000000 MHz
  coding_rate        CR4_5
@@ -102,7 +102,7 @@ SX127x LoRa registers:
 
 # Class Reference
 
-The interface to the SX127x LoRa modem is implemented in the class `SX127x.LoRa.LoRa`.
+The interface to the hoperf LoRa modem is implemented in the class `hoperf.LoRa.LoRa`.
 The most important modem configuration parameters are:
  
 | Function         | Description                                 |
@@ -118,10 +118,10 @@ Most set_* functions have a mirror get_* function, but beware that the getter re
 the setter input types.
 
 ### Register naming convention
-The register addresses are defined in class `SX127x.constants.REG` and we use a specific naming convention which 
+The register addresses are defined in class `hoperf.constants.REG` and we use a specific naming convention which 
 is best illustrated by a few examples:
 
-| Register | Modem | Semtech doc.      | pySX127x                   |
+| Register | Modem | Semtech doc.      | pyhoperf                   |
 |----------|-------|-------------------| ---------------------------|
 | 0x0E     | LoRa  | RegFifoTxBaseAddr | REG.LORA.FIFO_TX_BASE_ADDR |
 | 0x0E     | FSK   | RegRssiCOnfig     | REG.FSK.RSSI_CONFIG        |
@@ -129,14 +129,14 @@ is best illustrated by a few examples:
 | etc.     |       |                   |                            |
 
 ### Hardware
-Hardware related definition and initialisation are located in `SX127x.board_config.BOARD`.
+Hardware related definition and initialisation are located in `hoperf.board_config.BOARD`.
 If you use a SBC other than the Raspberry Pi you'll have to adapt the BOARD class.
 
 
 # Script references
 
 ### Continuous receiver `rx_cont.py`
-The SX127x is put in RXCONT mode and continuously waits for transmissions. Upon a successful read the
+The hoperf is put in RXCONT mode and continuously waits for transmissions. Upon a successful read the
 payload and the irq flags are printed to screen.
 ```
 usage: rx_cont.py [-h] [--ocp OCP] [--sf SF] [--freq FREQ] [--bw BW]
@@ -202,13 +202,13 @@ Follow me on twitter [@markuscmayer](https://twitter.com/markuscmayer) and
 
 # Roadmap
 
-95% of functions for the Sx127x LoRa capabilities are implemented. Functions will be added when necessary.
+95% of functions for the hoperf LoRa capabilities are implemented. Functions will be added when necessary.
 The test coverage is rather low but we intend to change that soon.
 
 ### Semtech SX1272/3 vs. SX1276/7/8/9
-**pySX127x** is not entirely compatible with the 1272.
+**pyhoperf** is not entirely compatible with the 1272.
 The 1276 and 1272 chips are different and the interfaces not 100% identical. For example registers 0x26/27. 
-But the pySX127x library should get you pretty far if you use it with care. Here are the two datasheets:
+But the pyhoperf library should get you pretty far if you use it with care. Here are the two datasheets:
 * [Semtech - SX1276/77/78/79 - 137 MHz to 1020 MHz Low Power Long Range Transceiver](http://www.semtech.com/images/datasheet/sx1276_77_78_79.pdf)
 * [Semtech SX1272/73 - 860 MHz to 1020 MHz Low Power Long Range Transceiver](http://www.semtech.com/images/datasheet/sx1272.pdf)
 
@@ -219,10 +219,10 @@ that have identical or almost identical SPI interface as the Semtech SX1276/7/8/
 ### Microchip transceiver IC ###
 Likewise Microchip has the chip [RN2483](http://ww1.microchip.com/downloads/en/DeviceDoc/50002346A.pdf)
 
-The [pySX127x](https://github.com/mayeranalytics/pySX127x) project will therefore be renamed to pyLoRa at some point.
+The [pyhoperf](https://github.com/mayeranalytics/pyhoperf) project will therefore be renamed to pyLoRa at some point.
 
 # LoRaWAN
-LoRaWAN is a LPWAN (low power WAN) and, and  **pySX127x** has almost no relationship with LoRaWAN. Here we only deal with the interface into the chip(s) that enable the physical layer of LoRaWAN networks.
+LoRaWAN is a LPWAN (low power WAN) and, and  **pyhoperf** has almost no relationship with LoRaWAN. Here we only deal with the interface into the chip(s) that enable the physical layer of LoRaWAN networks.
 
 
 # References
@@ -252,18 +252,18 @@ LoRaWAN is a LPWAN (low power WAN) and, and  **pySX127x** has almost no relation
 The license is [GNU AGPL](http://www.gnu.org/licenses/agpl-3.0.en.html).
 
 ### Long version
-pySX127x is free software: you can redistribute it and/or modify it under the terms of the 
+pyhoperf is free software: you can redistribute it and/or modify it under the terms of the 
 GNU Affero General Public License as published by the Free Software Foundation, 
 either version 3 of the License, or (at your option) any later version.
 
-pySX127x is distributed in the hope that it will be useful, 
+pyhoperf is distributed in the hope that it will be useful, 
 but WITHOUT ANY WARRANTY; without even the implied warranty of 
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
 See the GNU Affero General Public License for more details.
 
 You can be released from the requirements of the license by obtaining a commercial license. 
 Such a license is mandatory as soon as you develop commercial activities involving 
-pySX127x without disclosing the source code of your own applications, or shipping pySX127x with a closed source product.
+pyhoperf without disclosing the source code of your own applications, or shipping pyhoperf with a closed source product.
 
 You should have received a copy of the GNU General Public License
 along with pySX127.  If not, see <http://www.gnu.org/licenses/>.
