@@ -4,26 +4,26 @@
 
 # Copyright 2015 Mayer Analytics Ltd.
 #
-# This file is part of pySX127x.
+# This file is part of pyhoperf.
 #
-# pySX127x is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public
+# pyhoperf is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public
 # License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later
 # version.
 #
-# pySX127x is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+# pyhoperf is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
 # warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
 # details.
 #
 # You can be released from the requirements of the license by obtaining a commercial license. Such a license is
-# mandatory as soon as you develop commercial activities involving pySX127x without disclosing the source code of your
-# own applications, or shipping pySX127x with a closed source product.
+# mandatory as soon as you develop commercial activities involving pyhoperf without disclosing the source code of your
+# own applications, or shipping pyhoperf with a closed source product.
 #
 # You should have received a copy of the GNU General Public License along with pySX127.  If not, see
 # <http://www.gnu.org/licenses/>.
 
 
-from SX127x.LoRa import *
-from SX127x.board_config import BOARD
+from hoperf.LoRa import *
+from hoperf.board_config import BOARD
 import unittest
 
 
@@ -46,7 +46,7 @@ def SaveState(reg_addr, n_registers=1):
     return decorator
 
 
-class TestSX127x(unittest.TestCase):
+class Testhoperf(unittest.TestCase):
 
     def test_setter_getter(self):
         bkup = lora.get_payload_length()

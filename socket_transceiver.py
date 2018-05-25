@@ -27,8 +27,8 @@
 
 import sys, asyncore
 from time import time
-from SX127x.LoRa import *
-from SX127x.board_config import BOARD
+from hoperf.LoRa import *
+from hoperf.board_config import BOARD
 
 BOARD.setup()
 
