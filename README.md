@@ -1,15 +1,12 @@
 # Overview
 
-This is a python interface for the Raspberry Pi+ LoRa(TM) Expansion Board by Uputronics (https://store.uputronics.com/index.php?route=product/product&path=61&product_id=68)
+This is a python interface for the Raspberry Pi+ LoRa(TM) Expansion Board by Uputronics (https://store.uputronics.com/index.php?route=product/product&path=61&product_id=68).
+This board uses the Hope RF’s patented LoRaTM modulation technique RFM95/96/97/98(W) 
 
-It is derived and adapted from: https://github.com/mayeranalytics/pySX127x with the help of the indications in: https://electron-tinker.blogspot.com.es/2016/08/raspberry-pi-lora-hoperf-python-code.html
+The code is derived and adapted from: https://github.com/mayeranalytics/pySX127x with the help of the indications in: https://electron-tinker.blogspot.com.es/2016/08/raspberry-pi-lora-hoperf-python-code.html
 
 
 # Motivation
-
-Transceiver modules are usually interfaced with microcontroller boards such as the 
-Arduino and there are already many fine C/C++ libraries for the SX127x family available on 
-[github](https://github.com/search?q=sx127x) and [mbed.org](https://developer.mbed.org/search/?q=sx127x).
 
 Although C/C++ is the de facto standard for development on microcontrollers, [python](https://www.python.org)
 running on a Raspberry Pi is becoming a viable alternative for rapid prototyping.
