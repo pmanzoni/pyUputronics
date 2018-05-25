@@ -3,7 +3,7 @@
 This is a python interface for the Raspberry Pi+ LoRa(TM) Expansion Board by Uputronics (https://store.uputronics.com/index.php?route=product/product&path=61&product_id=68).
 This board uses the Hope RF’s patented LoRaTM modulation technique RFM95/96/97/98(W) 
 
-The code is derived and adapted from: https://github.com/mayeranalytics/pyhoperf with the help of the indications in: https://electron-tinker.blogspot.com.es/2016/08/raspberry-pi-lora-hoperf-python-code.html
+The code is derived and adapted from: https://github.com/mayeranalytics/pyUputronics with the help of the indications in: https://electron-tinker.blogspot.com.es/2016/08/raspberry-pi-lora-hoperf-python-code.html
 
 
 # Motivation
@@ -65,13 +65,10 @@ print lora.get_coding_rate()                # print the current coding rate
 lora.set_coding_rate(CODING_RATE.CR4_6)     # set it to CR4_6
 ```
 
-@todo
-
-
 # Installation
 
 Make sure SPI is activated on you RaspberryPi: [SPI](https://www.raspberrypi.org/documentation/hardware/raspberrypi/spi/README.md)
-**pyhoperf** requires these two python packages:
+**pyUputronics** requires these two python packages:
 * [RPi.GPIO](https://pypi.python.org/pypi/RPi.GPIO") for accessing the GPIOs, it should be already installed on
   a standard Raspian Linux image
 * [spidev](https://pypi.python.org/pypi/spidev) for controlling SPI
@@ -121,7 +118,7 @@ the setter input types.
 The register addresses are defined in class `hoperf.constants.REG` and we use a specific naming convention which 
 is best illustrated by a few examples:
 
-| Register | Modem | Semtech doc.      | pyhoperf                   |
+| Register | Modem | Semtech doc.      | pyUputronics                   |
 |----------|-------|-------------------| ---------------------------|
 | 0x0E     | LoRa  | RegFifoTxBaseAddr | REG.LORA.FIFO_TX_BASE_ADDR |
 | 0x0E     | FSK   | RegRssiCOnfig     | REG.FSK.RSSI_CONFIG        |
@@ -202,13 +199,10 @@ Follow me on twitter [@markuscmayer](https://twitter.com/markuscmayer) and
 
 # Roadmap
 
-95% of functions for the hoperf LoRa capabilities are implemented. Functions will be added when necessary.
-The test coverage is rather low but we intend to change that soon.
-
 ### Semtech SX1272/3 vs. SX1276/7/8/9
-**pyhoperf** is not entirely compatible with the 1272.
+**pyUputronics** is not entirely compatible with the 1272.
 The 1276 and 1272 chips are different and the interfaces not 100% identical. For example registers 0x26/27. 
-But the pyhoperf library should get you pretty far if you use it with care. Here are the two datasheets:
+But the pyUputronics library should get you pretty far if you use it with care. Here are the two datasheets:
 * [Semtech - SX1276/77/78/79 - 137 MHz to 1020 MHz Low Power Long Range Transceiver](http://www.semtech.com/images/datasheet/sx1276_77_78_79.pdf)
 * [Semtech SX1272/73 - 860 MHz to 1020 MHz Low Power Long Range Transceiver](http://www.semtech.com/images/datasheet/sx1272.pdf)
 
@@ -219,10 +213,8 @@ that have identical or almost identical SPI interface as the Semtech SX1276/7/8/
 ### Microchip transceiver IC ###
 Likewise Microchip has the chip [RN2483](http://ww1.microchip.com/downloads/en/DeviceDoc/50002346A.pdf)
 
-The [pyhoperf](https://github.com/mayeranalytics/pyhoperf) project will therefore be renamed to pyLoRa at some point.
-
 # LoRaWAN
-LoRaWAN is a LPWAN (low power WAN) and, and  **pyhoperf** has almost no relationship with LoRaWAN. Here we only deal with the interface into the chip(s) that enable the physical layer of LoRaWAN networks.
+LoRaWAN is a LPWAN (low power WAN) and, and  **pyUputronics** has almost no relationship with LoRaWAN. Here we only deal with the interface into the chip(s) that enable the physical layer of LoRaWAN networks.
 
 
 # References
@@ -252,18 +244,18 @@ LoRaWAN is a LPWAN (low power WAN) and, and  **pyhoperf** has almost no relation
 The license is [GNU AGPL](http://www.gnu.org/licenses/agpl-3.0.en.html).
 
 ### Long version
-pyhoperf is free software: you can redistribute it and/or modify it under the terms of the 
+pyUputronics is free software: you can redistribute it and/or modify it under the terms of the 
 GNU Affero General Public License as published by the Free Software Foundation, 
 either version 3 of the License, or (at your option) any later version.
 
-pyhoperf is distributed in the hope that it will be useful, 
+pyUputronics is distributed in the hope that it will be useful, 
 but WITHOUT ANY WARRANTY; without even the implied warranty of 
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
 See the GNU Affero General Public License for more details.
 
 You can be released from the requirements of the license by obtaining a commercial license. 
 Such a license is mandatory as soon as you develop commercial activities involving 
-pyhoperf without disclosing the source code of your own applications, or shipping pyhoperf with a closed source product.
+pyUputronics without disclosing the source code of your own applications, or shipping pyUputronics with a closed source product.
 
 You should have received a copy of the GNU General Public License
 along with pySX127.  If not, see <http://www.gnu.org/licenses/>.
