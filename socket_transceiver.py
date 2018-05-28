@@ -75,6 +75,7 @@ class LoRaSocket(LoRa):
     def __init__(self, verbose=False):
         super(LoRaSocket, self).__init__(verbose)
         self.set_mode(MODE.SLEEP)
+        self.set_freq(869.0)  
         self.set_pa_config(pa_select=1)
         self.set_max_payload_length(128) # set max payload to max fifo buffer length
         self.payload = []
