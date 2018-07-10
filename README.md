@@ -3,13 +3,44 @@
 This is a python interface for the Raspberry Pi+ LoRa(TM) Expansion Board by Uputronics (https://store.uputronics.com/index.php?route=product/product&path=61&product_id=68).
 This board uses the Hope RF’s patented LoRaTM modulation technique RFM95/96/97/98(W) 
 
-The code is derived and adapted from: https://github.com/mayeranalytics/pyUputronics with the help of the indications in: https://electron-tinker.blogspot.com.es/2016/08/raspberry-pi-lora-hoperf-python-code.html
+The code is derived and adapted from: https://github.com/mayeranalytics/pySX127x with the help of the indications in: https://electron-tinker.blogspot.com.es/2016/08/raspberry-pi-lora-hoperf-python-code.html
 
 
 # Motivation
 
 Although C/C++ is the de facto standard for development on microcontrollers, [python](https://www.python.org)
 running on a Raspberry Pi is becoming a viable alternative for rapid prototyping.
+
+# Installation
+
+Make sure SPI is activated on you RaspberryPi: [SPI](https://www.raspberrypi.org/documentation/hardware/raspberrypi/spi/README.md)
+**pyUputronics** requires these two python packages:
+* [RPi.GPIO](https://pypi.python.org/pypi/RPi.GPIO") for accessing the GPIOs, it should be already installed on
+  a standard Raspian Linux image
+* [spidev](https://pypi.python.org/pypi/spidev) for controlling SPI
+
+In order to install spidev download the source code and run setup.py manually:
+```bash
+wget https://pypi.python.org/packages/source/s/spidev/spidev-3.1.tar.gz
+tar xfvz  spidev-3.1.tar.gz
+cd spidev-3.1
+sudo python setup.py install
+```
+
+At this point you may want to confirm that the unit tests pass. See the section [Tests](#tests) below.
+
+You can now run the scripts. For example dump the registers with `lora_util.py`: 
+```bash
+rasp$ sudo ./lora_util.py
+hoperf LoRa registers:
+ mode               SLEEP
+ freq               434.000000 MHz
+ coding_rate        CR4_5
+ bw                 BW125
+ spreading_factor   128 chips/symb
+ implicit_hdr_mode  OFF
+ ... and so on ....
+```
 
 
 # Code Examples
@@ -63,37 +94,6 @@ the coding rate are demonstrated here
 ```python 
 print lora.get_coding_rate()                # print the current coding rate
 lora.set_coding_rate(CODING_RATE.CR4_6)     # set it to CR4_6
-```
-
-# Installation
-
-Make sure SPI is activated on you RaspberryPi: [SPI](https://www.raspberrypi.org/documentation/hardware/raspberrypi/spi/README.md)
-**pyUputronics** requires these two python packages:
-* [RPi.GPIO](https://pypi.python.org/pypi/RPi.GPIO") for accessing the GPIOs, it should be already installed on
-  a standard Raspian Linux image
-* [spidev](https://pypi.python.org/pypi/spidev) for controlling SPI
-
-In order to install spidev download the source code and run setup.py manually:
-```bash
-wget https://pypi.python.org/packages/source/s/spidev/spidev-3.1.tar.gz
-tar xfvz  spidev-3.1.tar.gz
-cd spidev-3.1
-sudo python setup.py install
-```
-
-At this point you may want to confirm that the unit tests pass. See the section [Tests](#tests) below.
-
-You can now run the scripts. For example dump the registers with `lora_util.py`: 
-```bash
-rasp$ sudo ./lora_util.py
-hoperf LoRa registers:
- mode               SLEEP
- freq               434.000000 MHz
- coding_rate        CR4_5
- bw                 BW125
- spreading_factor   128 chips/symb
- implicit_hdr_mode  OFF
- ... and so on ....
 ```
 
 
