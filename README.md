@@ -36,6 +36,55 @@ hoperf LoRa registers:
  ... and so on ....
 ```
 
+# Script references
+
+### Continuous receiver `rx_cont.py`
+The hoperf is put in RXCONT mode and continuously waits for transmissions. Upon a successful read the
+payload and the irq flags are printed to screen.
+```
+usage: rx_cont.py [-h] [--ocp OCP] [--sf SF] [--freq FREQ] [--bw BW]
+                  [--cr CODING_RATE] [--preamble PREAMBLE]
+
+Continous LoRa receiver
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --ocp OCP, -c OCP     Over current protection in mA (45 .. 240 mA)
+  --sf SF, -s SF        Spreading factor (6...12). Default is 7.
+  --freq FREQ, -f FREQ  Frequency
+  --bw BW, -b BW        Bandwidth (one of BW7_8 BW10_4 BW15_6 BW20_8 BW31_25
+                        BW41_7 BW62_5 BW125 BW250 BW500). Default is BW125.
+  --cr CODING_RATE, -r CODING_RATE
+                        Coding rate (one of CR4_5 CR4_6 CR4_7 CR4_8). Default
+                        is CR4_5.
+  --preamble PREAMBLE, -p PREAMBLE
+                        Preamble length. Default is 8.
+```
+
+### Simple LoRa beacon `tx_beacon.py`
+A small payload is transmitted in regular intervals.
+```
+usage: tx_beacon.py [-h] [--ocp OCP] [--sf SF] [--freq FREQ] [--bw BW]
+                    [--cr CODING_RATE] [--preamble PREAMBLE] [--single]
+                    [--wait WAIT]
+
+A simple LoRa beacon
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --ocp OCP, -c OCP     Over current protection in mA (45 .. 240 mA)
+  --sf SF, -s SF        Spreading factor (6...12). Default is 7.
+  --freq FREQ, -f FREQ  Frequency
+  --bw BW, -b BW        Bandwidth (one of BW7_8 BW10_4 BW15_6 BW20_8 BW31_25
+                        BW41_7 BW62_5 BW125 BW250 BW500). Default is BW125.
+  --cr CODING_RATE, -r CODING_RATE
+                        Coding rate (one of CR4_5 CR4_6 CR4_7 CR4_8). Default
+                        is CR4_5.
+  --preamble PREAMBLE, -p PREAMBLE
+                        Preamble length. Default is 8.
+  --single, -S          Single transmission
+  --wait WAIT, -w WAIT  Waiting time between transmissions (default is 0s)
+```
 
 # Code Examples
 
@@ -124,61 +173,9 @@ Hardware related definition and initialisation are located in `hoperf.board_conf
 If you use a SBC other than the Raspberry Pi you'll have to adapt the BOARD class.
 
 
-# Script references
 
-### Continuous receiver `rx_cont.py`
-The hoperf is put in RXCONT mode and continuously waits for transmissions. Upon a successful read the
-payload and the irq flags are printed to screen.
-```
-usage: rx_cont.py [-h] [--ocp OCP] [--sf SF] [--freq FREQ] [--bw BW]
-                  [--cr CODING_RATE] [--preamble PREAMBLE]
-
-Continous LoRa receiver
-
-optional arguments:
-  -h, --help            show this help message and exit
-  --ocp OCP, -c OCP     Over current protection in mA (45 .. 240 mA)
-  --sf SF, -s SF        Spreading factor (6...12). Default is 7.
-  --freq FREQ, -f FREQ  Frequency
-  --bw BW, -b BW        Bandwidth (one of BW7_8 BW10_4 BW15_6 BW20_8 BW31_25
-                        BW41_7 BW62_5 BW125 BW250 BW500). Default is BW125.
-  --cr CODING_RATE, -r CODING_RATE
-                        Coding rate (one of CR4_5 CR4_6 CR4_7 CR4_8). Default
-                        is CR4_5.
-  --preamble PREAMBLE, -p PREAMBLE
-                        Preamble length. Default is 8.
-```
-
-### Simple LoRa beacon `tx_beacon.py`
-A small payload is transmitted in regular intervals.
-```
-usage: tx_beacon.py [-h] [--ocp OCP] [--sf SF] [--freq FREQ] [--bw BW]
-                    [--cr CODING_RATE] [--preamble PREAMBLE] [--single]
-                    [--wait WAIT]
-
-A simple LoRa beacon
-
-optional arguments:
-  -h, --help            show this help message and exit
-  --ocp OCP, -c OCP     Over current protection in mA (45 .. 240 mA)
-  --sf SF, -s SF        Spreading factor (6...12). Default is 7.
-  --freq FREQ, -f FREQ  Frequency
-  --bw BW, -b BW        Bandwidth (one of BW7_8 BW10_4 BW15_6 BW20_8 BW31_25
-                        BW41_7 BW62_5 BW125 BW250 BW500). Default is BW125.
-  --cr CODING_RATE, -r CODING_RATE
-                        Coding rate (one of CR4_5 CR4_6 CR4_7 CR4_8). Default
-                        is CR4_5.
-  --preamble PREAMBLE, -p PREAMBLE
-                        Preamble length. Default is 8.
-  --single, -S          Single transmission
-  --wait WAIT, -w WAIT  Waiting time between transmissions (default is 0s)
-```
-
-
-# Tests
-
-Execute `test_lora.py` to run a few unit tests. 
-
+---
+---
 
 # Contributors
 
