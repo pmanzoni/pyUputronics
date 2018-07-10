@@ -234,6 +234,9 @@ class LoRa(object):
         self.set_mode(MODE.STDBY)
         base_addr = self.get_fifo_tx_base_addr()
         self.set_fifo_addr_ptr(base_addr)
+
+        print ([REG.LORA.FIFO | 0x80] + payload)
+
         return self.spi.xfer([REG.LORA.FIFO | 0x80] + payload)[1:]
 
     def reset_ptr_rx(self):
