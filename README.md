@@ -5,12 +5,6 @@ This board uses the Hope RF’s patented LoRaTM modulation technique RFM95/96/97
 
 The code is derived and adapted from: https://github.com/mayeranalytics/pySX127x with the help of the indications in: https://electron-tinker.blogspot.com.es/2016/08/raspberry-pi-lora-hoperf-python-code.html
 
-
-# Motivation
-
-Although C/C++ is the de facto standard for development on microcontrollers, [python](https://www.python.org)
-running on a Raspberry Pi is becoming a viable alternative for rapid prototyping.
-
 # Installation
 
 Make sure SPI is activated on you RaspberryPi: [SPI](https://www.raspberrypi.org/documentation/hardware/raspberrypi/spi/README.md)
@@ -27,9 +21,9 @@ cd spidev-3.1
 sudo python setup.py install
 ```
 
-At this point you may want to confirm that the unit tests pass. See the section [Tests](#tests) below.
+At this point you may want to confirm that the unit tests pass. 
 
-You can now run the scripts. For example dump the registers with `lora_util.py`: 
+For example, you can run the scripts `lora_util.py` that dumps the registers.
 ```bash
 rasp$ sudo ./lora_util.py
 hoperf LoRa registers:
