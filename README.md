@@ -42,7 +42,7 @@ hoperf LoRa registers:
 The hoperf is put in RXCONT mode and continuously waits for transmissions. Upon a successful read the
 payload and the irq flags are printed to screen.
 ```
-usage: sudo ./rx_cont.py [-h] [--ocp OCP] [--sf SF] [--freq FREQ] [--bw BW]
+usage: ./rx_cont.py [-h] [--ocp OCP] [--sf SF] [--freq FREQ] [--bw BW]
                   [--cr CODING_RATE] [--preamble PREAMBLE]
 
 Continous LoRa receiver
@@ -64,7 +64,7 @@ optional arguments:
 ### Simple LoRa beacon `tx_beacon.py`
 A small payload is transmitted in regular intervals.
 ```
-usage: sudo ./tx_beacon.py [-h] [--ocp OCP] [--sf SF] [--freq FREQ] [--bw BW]
+usage: ./tx_beacon.py [-h] [--ocp OCP] [--sf SF] [--freq FREQ] [--bw BW]
                     [--cr CODING_RATE] [--preamble PREAMBLE] [--single]
                     [--wait WAIT]
 
