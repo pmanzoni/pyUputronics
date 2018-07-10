@@ -94,7 +94,8 @@ class LoRaBeacon(LoRa):
         self.tx_counter = 0
         BOARD.led_on()
         pl = b"Winter is coming"
-        self.write_payload(list(pl))
+        pl_ilist = [elem.encode("hex") for elem in str]
+        self.write_payload(pl_ilist)
         self.set_mode(MODE.TX)
         while True:
             sleep(1)
