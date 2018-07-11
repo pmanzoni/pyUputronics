@@ -95,8 +95,8 @@ class LoRaBeacon(LoRa):
         BOARD.led_on()
         pl = b"Winter is coming"
 #        pl_ilist = [elem.encode("hex") for elem in pl]
-#        self.write_payload([elem.encode("hex") for elem in pl])
-        self.write_payload([0x0f,0x0f,0x0f,0x0f,0x0f,0x0f,0x0f,0x0f,0x0f,0x0f,0x0f,0x0f,0x0f])
+        self.write_payload([ord(elem) for elem in pl])
+#        self.write_payload([0x0f,0x0f,0x0f,0x0f,0x0f,0x0f,0x0f,0x0f,0x0f,0x0f,0x0f,0x0f,0x0f])
         self.set_mode(MODE.TX)
         while True:
             sleep(1)
