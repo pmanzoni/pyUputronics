@@ -64,7 +64,8 @@ class LoRaBeacon(LoRa):
             sys.exit(0)
         BOARD.led_off()
         sleep(args.wait)
-        self.write_payload([0x0f])
+        pl = b"Winter is coming"
+        self.write_payload([ord(elem) for elem in pl])
         BOARD.led_on()
         self.set_mode(MODE.TX)
 
