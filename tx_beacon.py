@@ -96,7 +96,7 @@ class LoRaBeacon(LoRa):
         pl = b"Winter is coming"
 #        pl_ilist = [elem.encode("hex") for elem in pl]
 #        self.write_payload([elem.encode("hex") for elem in pl])
-        self.write_payload(['57', '69', '6e', '74', '65', '72', '20', '69', '73', '20', '63', '6f', '6d', '69', '6e', '67'])
+        self.write_payload([0x0f,0x0f,0x0f,0x0f,0x0f,0x0f,0x0f,0x0f,0x0f,0x0f,0x0f,0x0f,0x0f])
         self.set_mode(MODE.TX)
         while True:
             sleep(1)
