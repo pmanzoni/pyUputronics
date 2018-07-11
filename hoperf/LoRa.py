@@ -235,8 +235,10 @@ class LoRa(object):
         base_addr = self.get_fifo_tx_base_addr()
         self.set_fifo_addr_ptr(base_addr)
 
+        print("KKKKKK")
         print([REG.LORA.FIFO | 0x80] + payload)
         print(self.spi.xfer([REG.LORA.FIFO | 0x80] + payload)[1:])
+        print("KKKKKK")
 
         return self.spi.xfer([REG.LORA.FIFO | 0x80] + payload)[1:]
 
